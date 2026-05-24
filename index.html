@@ -954,11 +954,11 @@
         </div>
         <div class="stats-grid">
           <div class="stat-card">
-            <div class="stat-number" style="color: var(--coral);">3+</div>
+            <div class="stat-number" style="color: var(--coral);" data-count="3" data-suffix="+">0+</div>
             <div class="stat-label">Years in Tech &amp; SaaS</div>
           </div>
           <div class="stat-card">
-            <div class="stat-number" style="color: var(--violet);">4</div>
+            <div class="stat-number" style="color: var(--violet);" data-count="4" data-suffix="">0</div>
             <div class="stat-label">Products Marketed</div>
           </div>
           <div class="stat-card">
@@ -1333,7 +1333,7 @@
     <div class="orb orb-cyan"   style="width:380px;height:380px;bottom:-80px;right:-60px;animation:orbDrift1 20s ease-in-out infinite;animation-delay:-10s;opacity:0.2;"></div>
     <div class="section-label">Get in Touch</div>
     <h2 class="contact-headline fade-in">Let's Work<br><span>Together</span></h2>
-    <p class="contact-sub fade-in fade-in-delay-1">Open to new opportunities in marketing leadership, B2B SaaS, and growth roles.</p>
+    <p class="contact-sub fade-in fade-in-delay-1">Open to marketing leadership roles in B2B SaaS and high-growth tech.<br>Available for <strong style="color: var(--emerald);">remote, hybrid, or on-site</strong> — wherever great work happens.</p>
     <div class="contact-links fade-in fade-in-delay-2">
       <a href="mailto:oanhnguyenhuynh221@gmail.com" class="contact-link primary">✉️ Send me an email</a>
       <a href="https://www.linkedin.com/in/oanhnguyen2000/" target="_blank" rel="noopener" class="contact-link secondary">💼 LinkedIn</a>
@@ -1361,6 +1361,33 @@
         document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
       });
     });
+
+    // Animated stat counters
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = parseInt(el.dataset.count);
+        const suffix = el.dataset.suffix || '';
+        const duration = 1200;
+        const steps = 40;
+        const stepTime = duration / steps;
+        let current = 0;
+        const inc = target / steps;
+        const timer = setInterval(() => {
+          current += inc;
+          if (current >= target) {
+            el.textContent = target + suffix;
+            clearInterval(timer);
+          } else {
+            el.textContent = Math.floor(current) + suffix;
+          }
+        }, stepTime);
+        counterObserver.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
 
     // Intersection Observer for fade-in animations
     const observer = new IntersectionObserver((entries) => {
