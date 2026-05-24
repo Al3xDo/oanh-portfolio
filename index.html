@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oanh Nguyen — Marketing Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f0f1a;
+      --card: #1e1e2e;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --coral: #ff6b6b;
+      --violet: #a78bfa;
+      --emerald: #34d399;
+      --amber: #fbbf24;
+      --cyan: #22d3ee;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: rgba(15, 15, 26, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    nav .logo {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, var(--coral), var(--violet));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav ul a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav ul a:hover { color: var(--text); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 50%, rgba(255,107,107,0.15) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 80% 30%, rgba(167,139,250,0.15) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 50% at 50% 90%, rgba(52,211,153,0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: rgba(167,139,250,0.15);
+      border: 1px solid rgba(167,139,250,0.3);
+      color: var(--violet);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.35rem 1rem;
+      border-radius: 100px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: clamp(3rem, 9vw, 7rem);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-name span {
+      background: linear-gradient(135deg, var(--coral) 0%, var(--violet) 50%, var(--cyan) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-tagline {
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      color: var(--muted);
+      font-weight: 300;
+      margin-bottom: 0.75rem;
+      max-width: 560px;
+    }
+
+    .hero-sub {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, var(--coral), var(--violet));
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      padding: 0.85rem 2rem;
+      border-radius: 100px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 24px rgba(255,107,107,0.3);
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(255,107,107,0.45);
+    }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--muted);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      animation: bounce 2s infinite;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--violet), transparent);
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ── SECTION SHARED ── */
+    section {
+      padding: 6rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .section-label::before {
+      content: '';
+      display: block;
+      width: 2rem;
+      height: 2px;
+      background: currentColor;
+    }
+
+    .section-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 3rem;
+    }
+
+    /* ── ABOUT ── */
+    #about .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    #about .bio p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      line-height: 1.8;
+      margin-bottom: 1.25rem;
+    }
+
+    #about .bio p strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .about-brings {
+      margin-top: 1.5rem;
+    }
+
+    .about-brings h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--violet);
+      margin-bottom: 0.75rem;
+    }
+
+    .bring-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      margin-bottom: 0.6rem;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .bring-item::before {
+      content: '→';
+      color: var(--coral);
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 1.5rem;
+      transition: transform 0.2s;
+    }
+
+    .stat-card:hover { transform: translateY(-3px); }
+
+    .stat-number {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 2.5rem;
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .cert-list {
+      margin-top: 1rem;
+      grid-column: 1 / -1;
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 1.5rem;
+    }
+
+    .cert-list h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 0.75rem;
+    }
+
+    .cert-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .cert-tag {
+      background: rgba(251,191,36,0.1);
+      border: 1px solid rgba(251,191,36,0.2);
+      color: var(--amber);
+      font-size: 0.75rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 100px;
+    }
+
+    /* ── SKILLS ── */
+    #skills { max-width: 1200px; margin: 0 auto; padding: 6rem 2rem; }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .skill-card {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+      padding: 1.75rem;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+      cursor: default;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .skill-card:nth-child(1):hover { border-color: var(--coral); box-shadow: 0 8px 32px rgba(255,107,107,0.15); }
+    .skill-card:nth-child(2):hover { border-color: var(--violet); box-shadow: 0 8px 32px rgba(167,139,250,0.15); }
+    .skill-card:nth-child(3):hover { border-color: var(--emerald); box-shadow: 0 8px 32px rgba(52,211,153,0.15); }
+    .skill-card:nth-child(4):hover { border-color: var(--amber); box-shadow: 0 8px 32px rgba(251,191,36,0.15); }
+    .skill-card:nth-child(5):hover { border-color: var(--cyan); box-shadow: 0 8px 32px rgba(34,211,238,0.15); }
+
+    .skill-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .skill-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .skill-card:nth-child(1) .skill-title { color: var(--coral); }
+    .skill-card:nth-child(2) .skill-title { color: var(--violet); }
+    .skill-card:nth-child(3) .skill-title { color: var(--emerald); }
+    .skill-card:nth-child(4) .skill-title { color: var(--amber); }
+    .skill-card:nth-child(5) .skill-title { color: var(--cyan); }
+
+    .skill-list {
+      list-style: none;
+    }
+
+    .skill-list li {
+      font-size: 0.85rem;
+      color: var(--muted);
+      padding: 0.3rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .skill-list li::before {
+      content: '·';
+      color: var(--muted);
+      font-size: 1.2rem;
+      line-height: 0;
+    }
+
+    .skill-list li:last-child { border-bottom: none; }
+
+    /* ── CASE STUDIES ── */
+    #work {
+      max-width: 100%;
+      padding: 6rem 0;
+    }
+
+    #work > .section-label,
+    #work > .section-title {
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    #work > .section-title { margin-bottom: 1rem; }
+
+    .work-intro {
+      max-width: 1200px;
+      margin: 0 auto 4rem;
+      padding: 0 2rem;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .cs-panel {
+      padding: 5rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cs-panel:nth-child(even) { background: rgba(255,255,255,0.02); }
+
+    .cs-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .cs-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .cs-number {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 5rem;
+      line-height: 1;
+      opacity: 0.12;
+      flex-shrink: 0;
+      margin-top: -0.5rem;
+    }
+
+    .cs-meta { flex: 1; }
+
+    .cs-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .cs-tag {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.75rem;
+      border-radius: 100px;
+    }
+
+    .cs-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .cs-body {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr 1fr;
+      gap: 2rem;
+    }
+
+    .cs-col h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid currentColor;
+    }
+
+    .cs-col p, .cs-col li {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .cs-col ul {
+      list-style: none;
+    }
+
+    .cs-col ul li {
+      padding: 0.3rem 0;
+      display: flex;
+      gap: 0.6rem;
+    }
+
+    .cs-col ul li::before {
+      content: '→';
+      flex-shrink: 0;
+      font-size: 0.8rem;
+      margin-top: 0.2rem;
+    }
+
+    .impact-item {
+      background: rgba(255,255,255,0.04);
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--text) !important;
+      font-weight: 500;
+      display: flex !important;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .impact-item::before { display: none !important; }
+
+    .impact-bullet {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* accent strip */
+    .cs-accent-strip {
+      height: 4px;
+      border-radius: 2px;
+      margin-bottom: 2rem;
+      width: 80px;
+    }
+
+    /* colors per panel */
+    .cs-panel[data-accent="coral"] .cs-number,
+    .cs-panel[data-accent="coral"] .cs-title { color: var(--coral); }
+    .cs-panel[data-accent="coral"] .cs-col h4 { color: var(--coral); }
+    .cs-panel[data-accent="coral"] .cs-col ul li::before { color: var(--coral); }
+    .cs-panel[data-accent="coral"] .impact-bullet { background: var(--coral); }
+    .cs-panel[data-accent="coral"] .cs-accent-strip { background: var(--coral); }
+    .cs-panel[data-accent="coral"] .cs-tag { background: rgba(255,107,107,0.12); border: 1px solid rgba(255,107,107,0.25); color: var(--coral); }
+
+    .cs-panel[data-accent="violet"] .cs-number,
+    .cs-panel[data-accent="violet"] .cs-title { color: var(--violet); }
+    .cs-panel[data-accent="violet"] .cs-col h4 { color: var(--violet); }
+    .cs-panel[data-accent="violet"] .cs-col ul li::before { color: var(--violet); }
+    .cs-panel[data-accent="violet"] .impact-bullet { background: var(--violet); }
+    .cs-panel[data-accent="violet"] .cs-accent-strip { background: var(--violet); }
+    .cs-panel[data-accent="violet"] .cs-tag { background: rgba(167,139,250,0.12); border: 1px solid rgba(167,139,250,0.25); color: var(--violet); }
+
+    .cs-panel[data-accent="emerald"] .cs-number,
+    .cs-panel[data-accent="emerald"] .cs-title { color: var(--emerald); }
+    .cs-panel[data-accent="emerald"] .cs-col h4 { color: var(--emerald); }
+    .cs-panel[data-accent="emerald"] .cs-col ul li::before { color: var(--emerald); }
+    .cs-panel[data-accent="emerald"] .impact-bullet { background: var(--emerald); }
+    .cs-panel[data-accent="emerald"] .cs-accent-strip { background: var(--emerald); }
+    .cs-panel[data-accent="emerald"] .cs-tag { background: rgba(52,211,153,0.12); border: 1px solid rgba(52,211,153,0.25); color: var(--emerald); }
+
+    .cs-panel[data-accent="amber"] .cs-number,
+    .cs-panel[data-accent="amber"] .cs-title { color: var(--amber); }
+    .cs-panel[data-accent="amber"] .cs-col h4 { color: var(--amber); }
+    .cs-panel[data-accent="amber"] .cs-col ul li::before { color: var(--amber); }
+    .cs-panel[data-accent="amber"] .impact-bullet { background: var(--amber); }
+    .cs-panel[data-accent="amber"] .cs-accent-strip { background: var(--amber); }
+    .cs-panel[data-accent="amber"] .cs-tag { background: rgba(251,191,36,0.12); border: 1px solid rgba(251,191,36,0.25); color: var(--amber); }
+
+    .cs-panel[data-accent="cyan"] .cs-number,
+    .cs-panel[data-accent="cyan"] .cs-title { color: var(--cyan); }
+    .cs-panel[data-accent="cyan"] .cs-col h4 { color: var(--cyan); }
+    .cs-panel[data-accent="cyan"] .cs-col ul li::before { color: var(--cyan); }
+    .cs-panel[data-accent="cyan"] .impact-bullet { background: var(--cyan); }
+    .cs-panel[data-accent="cyan"] .cs-accent-strip { background: var(--cyan); }
+    .cs-panel[data-accent="cyan"] .cs-tag { background: rgba(34,211,238,0.12); border: 1px solid rgba(34,211,238,0.25); color: var(--cyan); }
+
+    /* ── FUNNEL MINI PANEL ── */
+    .funnel-section {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .funnel-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+
+    .funnel-stage {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .funnel-stage-label {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--violet);
+      margin-bottom: 0.5rem;
+    }
+
+    .funnel-stage-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .funnel-stage p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      padding: 8rem 2rem 4rem;
+      text-align: center;
+      position: relative;
+    }
+
+    #contact::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 60% 40% at 50% 0%, rgba(167,139,250,0.1) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .contact-headline {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: clamp(2.5rem, 7vw, 5rem);
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: 1rem;
+    }
+
+    .contact-headline span {
+      background: linear-gradient(135deg, var(--violet), var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .contact-sub {
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 3rem;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 4rem;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.85rem 1.75rem;
+      border-radius: 100px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .contact-link:hover { transform: translateY(-2px); }
+
+    .contact-link.primary {
+      background: linear-gradient(135deg, var(--violet), var(--cyan));
+      color: #fff;
+      box-shadow: 0 4px 24px rgba(167,139,250,0.3);
+    }
+
+    .contact-link.primary:hover { box-shadow: 0 8px 32px rgba(167,139,250,0.45); }
+
+    .contact-link.secondary {
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-bottom: 4rem;
+    }
+
+    .contact-info span {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 2rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    /* ── FADE IN ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .fade-in-delay-1 { transition-delay: 0.1s; }
+    .fade-in-delay-2 { transition-delay: 0.2s; }
+    .fade-in-delay-3 { transition-delay: 0.3s; }
+    .fade-in-delay-4 { transition-delay: 0.4s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .cs-body { grid-template-columns: 1fr 1fr; }
+      .cs-body .cs-col:nth-child(2) { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 768px) {
+      nav ul { display: none; }
+
+      #about .about-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+
+      .cs-body { grid-template-columns: 1fr; }
+      .cs-body .cs-col:nth-child(2) { grid-column: auto; }
+
+      .funnel-grid { grid-template-columns: 1fr; }
+
+      .cs-header { flex-direction: column; gap: 0.5rem; }
+      .cs-number { font-size: 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">Oanh Nguyen</div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-tag">Marketing Portfolio</div>
+    <h1 class="hero-name"><span>Oanh Nguyen</span></h1>
+    <p class="hero-tagline">Results-driven marketer · 3+ years in tech &amp; SaaS</p>
+    <p class="hero-sub">Strategy · GTM · Growth · Content · Analytics</p>
+    <a href="#work" class="hero-cta">See My Work ↓</a>
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-label">About Me</div>
+    <h2 class="section-title fade-in">Marketer who<br>owns the <em style="font-style:normal; background: linear-gradient(135deg, var(--coral), var(--violet)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">full funnel</em></h2>
+
+    <div class="about-grid">
+      <div class="bio fade-in fade-in-delay-1">
+        <p>I'm Oanh Nguyen, a <strong>results-driven marketer with 3+ years of experience in tech and SaaS</strong>, owning marketing initiatives end-to-end — from strategy and product positioning to execution, optimization, and performance reporting.</p>
+        <p>I thrive in cross-functional teams, working closely with Product, Sales, and Engineering to <strong>turn complex products into clear, engaging stories</strong>. With hands-on experience in digital marketing, SEO, paid ads, lead generation, and ABM, I balance strategic thinking with execution.</p>
+        <div class="about-brings">
+          <h4>What I bring to a team</h4>
+          <div class="bring-item">A strategy-owner mindset, not just execution</div>
+          <div class="bring-item">Ability to run campaigns independently or lead cross-team initiatives</div>
+          <div class="bring-item">A data-driven, outcome-focused approach</div>
+        </div>
+      </div>
+
+      <div class="fade-in fade-in-delay-2">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number" style="color: var(--coral);">3+</div>
+            <div class="stat-label">Years in Tech &amp; SaaS</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" style="color: var(--violet);">4</div>
+            <div class="stat-label">Products Marketed</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" style="color: var(--emerald);">B2B</div>
+            <div class="stat-label">Enterprise Focus</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" style="color: var(--amber);">GTM</div>
+            <div class="stat-label">End-to-End Owner</div>
+          </div>
+          <div class="cert-list">
+            <h4>Certifications</h4>
+            <div class="cert-tags">
+              <span class="cert-tag">HubSpot SEO</span>
+              <span class="cert-tag">HubSpot Inbound Marketing</span>
+              <span class="cert-tag">Advanced Google Analytics</span>
+              <span class="cert-tag">HubSpot Social Media</span>
+              <span class="cert-tag">Google Digital Garage</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-label">Capabilities</div>
+    <h2 class="section-title fade-in">What I do <em style="font-style:normal; background: linear-gradient(135deg, var(--amber), var(--coral)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">well</em></h2>
+
+    <div class="skills-grid">
+      <div class="skill-card fade-in">
+        <span class="skill-icon">🎯</span>
+        <div class="skill-title">Strategy &amp; Planning</div>
+        <ul class="skill-list">
+          <li>Go-to-Market (GTM) Strategy</li>
+          <li>Quarterly / Annual Planning</li>
+          <li>OKRs &amp; KPI Definition</li>
+          <li>Positioning &amp; Messaging Frameworks</li>
+        </ul>
+      </div>
+      <div class="skill-card fade-in fade-in-delay-1">
+        <span class="skill-icon">📊</span>
+        <div class="skill-title">Analytics &amp; Optimization</div>
+        <ul class="skill-list">
+          <li>Funnel &amp; Conversion Analysis</li>
+          <li>A/B Testing</li>
+          <li>Marketing Performance Reporting</li>
+        </ul>
+      </div>
+      <div class="skill-card fade-in fade-in-delay-2">
+        <span class="skill-icon">🤝</span>
+        <div class="skill-title">Collaboration &amp; Leadership</div>
+        <ul class="skill-list">
+          <li>Cross-functional Collaboration</li>
+          <li>Stakeholder Management</li>
+          <li>Mentoring Juniors / Interns</li>
+        </ul>
+      </div>
+      <div class="skill-card fade-in fade-in-delay-3">
+        <span class="skill-icon">🚀</span>
+        <div class="skill-title">Growth &amp; Channels</div>
+        <ul class="skill-list">
+          <li>Organic Content (Blog, SEO, Social)</li>
+          <li>Paid Ads (Google, Meta, LinkedIn)</li>
+          <li>Community &amp; Partnership Campaigns</li>
+          <li>App &amp; Feature Launch Campaigns</li>
+        </ul>
+      </div>
+      <div class="skill-card fade-in fade-in-delay-4">
+        <span class="skill-icon">✍️</span>
+        <div class="skill-title">Content &amp; Communication</div>
+        <ul class="skill-list">
+          <li>Product Messaging &amp; Value Props</li>
+          <li>Website &amp; Landing Page Copy</li>
+          <li>Email Marketing &amp; Lifecycle</li>
+          <li>Internal Communication &amp; Enablement</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE STUDIES -->
+  <div id="work">
+    <div class="section-label">Selected Work</div>
+    <h2 class="section-title fade-in">Case <em style="font-style:normal; background: linear-gradient(135deg, var(--emerald), var(--cyan)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">Studies</em></h2>
+    <p class="work-intro fade-in">A selection of marketing initiatives across product positioning, go-to-market execution, growth optimization, and content strategy.</p>
+
+    <!-- CS 1 -->
+    <div class="cs-panel" data-accent="coral">
+      <div class="cs-inner">
+        <div class="cs-accent-strip"></div>
+        <div class="cs-header fade-in">
+          <div class="cs-number">01</div>
+          <div class="cs-meta">
+            <div class="cs-tags">
+              <span class="cs-tag">Positioning</span>
+              <span class="cs-tag">Messaging</span>
+              <span class="cs-tag">ICP</span>
+            </div>
+            <h3 class="cs-title">Product Positioning &amp; Messaging Refresh</h3>
+          </div>
+        </div>
+        <div class="cs-body">
+          <div class="cs-col fade-in">
+            <h4>Context</h4>
+            <p>The product was technically complex, with inconsistent messaging across website, sales, and marketing channels — making it hard for prospects to quickly grasp its value.</p>
+          </div>
+          <div class="cs-col fade-in fade-in-delay-1">
+            <h4>What I Did</h4>
+            <ul>
+              <li>Conducted 3C analysis and redefined ICPs to identify market gaps and key customer pain points</li>
+              <li>Built a clear positioning &amp; messaging framework</li>
+              <li>Simplified technical language into outcome-driven messaging</li>
+              <li>Rolled out consistent messaging across website, sales decks, and campaigns</li>
+            </ul>
+          </div>
+          <div class="cs-col fade-in fade-in-delay-2">
+            <h4>Impact</h4>
+            <ul>
+              <li class="impact-item"><span class="impact-bullet"></span>Clearer and more compelling product narrative</li>
+              <li class="impact-item"><span class="impact-bullet"></span>Stronger alignment between Marketing and Sales</li>
+              <li class="impact-item"><span class="impact-bullet"></span>Improved engagement &amp; conversion on key product pages</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CS 2 -->
+    <div class="cs-panel" data-accent="violet">
+      <div class="cs-inner">
+        <div class="cs-accent-strip"></div>
+        <div class="cs-header fade-in">
+          <div class="cs-number">02</div>
+          <div class="cs-meta">
+            <div class="cs-tags">
+              <span class="cs-tag">GTM</span>
+              <span class="cs-tag">Feature Launch</span>
+              <span class="cs-tag">SaaS</span>
+            </div>
+            <h3 class="cs-title">GTM Strategy — Gantt Feature Launch (UpDiagram)</h3>
+          </div>
+        </div>
+        <div class="cs-body">
+          <div class="cs-col fade-in">
+            <h4>Context</h4>
+            <p>Launched a new Gantt Timeline feature at a Project Management platform to visualize dependencies and delivery timelines, while expanding into a new segment: startup founders and cross-functional product teams.</p>
+          </div>
+          <div class="cs-col fade-in fade-in-delay-1">
+            <h4>What I Did</h4>
+            <ul>
+              <li>Defined ICPs and personas (Founders, PMs, Ops Leads)</li>
+              <li>Built value propositions focused on "clarity in planning and faster execution"</li>
+              <li>Created GTM roadmap: email, in-app prompts, landing page, webinar, demo flow</li>
+              <li>Developed sales enablement assets: pitch deck, FAQs, objection handling</li>
+            </ul>
+          </div>
+          <div class="cs-col fade-in fade-in-delay-2">
+            <h4>Impact</h4>
+            <ul>
+              <li class="impact-item"><span class="impact-bullet"></span>+17% Gantt feature adoption in first month</li>
+              <li class="impact-item"><span class="impact-bullet"></span>+34% increase in new user sign-ups from target segment</li>
+              <li class="impact-item"><span class="impact-bullet"></span>Increased demo-to-trial conversion</li>
+              <li class="impact-item"><span class="impact-bullet"></span>Strong alignment across Product, Sales &amp; CS</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CS 3 -->
+    <div class="cs-panel" data-accent="emerald">
+      <div class="cs-inner">
+        <div class="cs-accent-strip"></div>
+        <div class="cs-header fade-in">
+          <div class="cs-number">03</div>
+          <div class="cs-meta">
+            <div class="cs-tags">
+              <span class="cs-tag">B2B</span>
+              <span class="cs-tag">Brand Building</span>
+              <span class="cs-tag">Paid Ads</span>
+            </div>
+            <h3 class="cs-title">GTM from Zero — Enterprise Brand Launch (ezLoyalty)</h3>
+          </div>
+        </div>
+        <div class="cs-body">
+          <div class="cs-col fade-in">
+            <h4>Context</h4>
+            <p>ezLoyalty is an API-centric loyalty platform for enterprise Retail, F&amp;B, Banking, and Insurance. When I took over, the brand had zero online presence — no website, no social, and no market awareness among B2B buyers.</p>
+          </div>
+          <div class="cs-col fade-in fade-in-delay-1">
+            <h4>What I Did</h4>
+            <ul>
+              <li>Coordinated end-to-end website build overseeing UI/UX direction, content structure &amp; WordPress CMS</li>
+              <li>Conducted B2B buyer journey research using competitor analysis, market reports &amp; AI tools</li>
+              <li>Proposed loyalty program mechanics (points, reward tiers, member benefits)</li>
+              <li>Built content presence across LinkedIn, Facebook &amp; YouTube</li>
+              <li>Launched B2B Google Ads targeting enterprise decision-makers</li>
+            </ul>
+          </div>
+          <div class="cs-col fade-in fade-in-delay-2">
+            <h4>Impact</h4>
+            <ul>
+              <li class="impact-item"><span class="impact-bullet"></span>Full digital presence built in 6 months</li>
+              <li class="impact-item"><span class="impact-bullet"></span>~5% Google Ads CTR (vs 2–3% B2B benchmark)</li>
+              <li class="impact-item"><span class="impact-bullet"></span>10–15% LinkedIn engagement on organic content</li>
+              <li class="impact-item"><span class="impact-bullet"></span>Early inbound interest from Retail, F&amp;B &amp; Banking</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CS 4 -->
+    <div class="cs-panel" data-accent="amber">
+      <div class="cs-inner">
+        <div class="cs-accent-strip"></div>
+        <div class="cs-header fade-in">
+          <div class="cs-number">04</div>
+          <div class="cs-meta">
+            <div class="cs-tags">
+              <span class="cs-tag">Mobile</span>
+              <span class="cs-tag">ASO</span>
+              <span class="cs-tag">Lifecycle</span>
+            </div>
+            <h3 class="cs-title">Mobile App GTM — Tournament Platform (GiveTour)</h3>
+          </div>
+        </div>
+        <div class="cs-body">
+          <div class="cs-col fade-in">
+            <h4>Context</h4>
+            <p>Launched a mobile app for a Tournament Management platform to help organizers, referees, and players manage schedules, results, and real-time updates. Goal: increase daily engagement and improve early-stage retention.</p>
+          </div>
+          <div class="cs-col fade-in fade-in-delay-1">
+            <h4>What I Did</h4>
+            <ul>
+              <li>Built mobile-first positioning: "run tournaments anywhere, in real time"</li>
+              <li>Led App Store &amp; Google Play launch strategy (ASO, screenshots, store copy)</li>
+              <li>Designed acquisition and lifecycle campaigns: launch email, in-app prompts, referral CTA, onboarding flows</li>
+              <li>Partnered with Product to refine onboarding based on beta feedback</li>
+            </ul>
+          </div>
+          <div class="cs-col fade-in fade-in-delay-2">
+            <h4>Impact</h4>
+            <ul>
+              <li class="impact-item"><span class="impact-bullet"></span>+29% increase in weekly active users post-launch</li>
+              <li class="impact-item"><span class="impact-bullet"></span>+21% growth in new mobile user acquisition</li>
+              <li class="impact-item"><span class="impact-bullet"></span>Higher engagement with live match updates</li>
+              <li class="impact-item"><span class="impact-bullet"></span>Improved retention for organizers &amp; players</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CS 5 — Growth Funnel -->
+    <div class="cs-panel" data-accent="cyan">
+      <div class="cs-inner">
+        <div class="cs-accent-strip"></div>
+        <div class="cs-header fade-in">
+          <div class="cs-number">05</div>
+          <div class="cs-meta">
+            <div class="cs-tags">
+              <span class="cs-tag">Growth</span>
+              <span class="cs-tag">Funnel Optimization</span>
+              <span class="cs-tag">Product-Led</span>
+            </div>
+            <h3 class="cs-title">Growth Funnel Optimization</h3>
+          </div>
+        </div>
+        <div class="cs-body">
+          <div class="cs-col fade-in">
+            <h4>Context</h4>
+            <p>Designed a data-driven growth plan to improve trial activation and conversion by clarifying product value and reducing early-stage friction across the user funnel.</p>
+          </div>
+          <div class="cs-col fade-in fade-in-delay-1">
+            <h4>What I Did</h4>
+            <ul>
+              <li>Mapped the full trial funnel: Sign-up → Onboarding → First Value → Upgrade</li>
+              <li>Defined activation metrics and success criteria per stage</li>
+              <li>Identified priority drop-off points and growth opportunities</li>
+              <li>Designed structured experiment roadmap: onboarding, in-app messaging, landing page, pricing tests</li>
+              <li>Created impact vs. effort prioritization framework for Product &amp; Engineering</li>
+            </ul>
+          </div>
+          <div class="cs-col fade-in fade-in-delay-2">
+            <h4>Planned Impact</h4>
+            <ul>
+              <li class="impact-item"><span class="impact-bullet"></span>Targeted +20–30% trial activation increase</li>
+              <li class="impact-item"><span class="impact-bullet"></span>Time-to-first-value reduced to under 24 hours</li>
+              <li class="impact-item"><span class="impact-bullet"></span>Clear KPI ownership across Marketing, Product &amp; Growth</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 3-stage diagram -->
+        <div class="funnel-grid" style="margin-top: 2.5rem;">
+          <div class="funnel-stage fade-in">
+            <div class="funnel-stage-label">Stage 1</div>
+            <div class="funnel-stage-title">Experience</div>
+            <p>Convert new users into active users through seamless onboarding and AHA moment delivery</p>
+          </div>
+          <div class="funnel-stage fade-in fade-in-delay-1">
+            <div class="funnel-stage-label">Stage 2</div>
+            <div class="funnel-stage-title">Upsell</div>
+            <p>Track usage limits and automate personalized upgrade offers at the right moment</p>
+          </div>
+          <div class="funnel-stage fade-in fade-in-delay-2">
+            <div class="funnel-stage-label">Stage 3</div>
+            <div class="funnel-stage-title">Referral</div>
+            <p>Build brand awareness and user loyalty through referral programs and reward systems</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-label">Get in Touch</div>
+    <h2 class="contact-headline fade-in">Let's Work<br><span>Together</span></h2>
+    <p class="contact-sub fade-in fade-in-delay-1">Open to new opportunities in marketing leadership, B2B SaaS, and growth roles.</p>
+    <div class="contact-links fade-in fade-in-delay-2">
+      <a href="mailto:oanhnguyenhuynh221@gmail.com" class="contact-link primary">✉️ Send me an email</a>
+      <a href="https://www.linkedin.com/in/oanhnguyen2000/" target="_blank" rel="noopener" class="contact-link secondary">LinkedIn Profile →</a>
+    </div>
+    <div class="contact-info fade-in fade-in-delay-3">
+      <span>📧 oanhnguyenhuynh221@gmail.com</span>
+      <span>📞 0898 436 409</span>
+      <span>📍 Ho Chi Minh City, Vietnam</span>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2024 Oanh Nguyen · Marketing Portfolio</p>
+  </footer>
+
+  <script>
+    // Intersection Observer for fade-in animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Smooth active nav link highlight
+    const sections = document.querySelectorAll('section[id], div[id]');
+    const navLinks = document.querySelectorAll('nav ul a');
+
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => {
+            link.style.color = '';
+            if (link.getAttribute('href') === '#' + entry.target.id) {
+              link.style.color = '#f1f5f9';
+            }
+          });
+        }
+      });
+    }, { threshold: 0.4 });
+
+    sections.forEach(s => navObserver.observe(s));
+  </script>
+</body>
+</html>
