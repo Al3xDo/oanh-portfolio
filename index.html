@@ -342,72 +342,90 @@
     /* ── SKILLS ── */
     #skills { max-width: 1200px; margin: 0 auto; padding: 6rem 2rem; }
 
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 1.25rem;
+    .tab-nav {
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 2rem;
     }
+    .tab-nav::-webkit-scrollbar { display: none; }
 
-    .skill-card {
-      background: var(--card);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 20px;
-      padding: 1.75rem;
-      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
-      cursor: default;
-    }
-
-    .skill-card:hover {
-      transform: translateY(-6px);
-    }
-
-    .skill-card:nth-child(1):hover { border-color: var(--coral); box-shadow: 0 8px 32px rgba(255,107,107,0.15); }
-    .skill-card:nth-child(2):hover { border-color: var(--violet); box-shadow: 0 8px 32px rgba(167,139,250,0.15); }
-    .skill-card:nth-child(3):hover { border-color: var(--emerald); box-shadow: 0 8px 32px rgba(52,211,153,0.15); }
-    .skill-card:nth-child(4):hover { border-color: var(--amber); box-shadow: 0 8px 32px rgba(251,191,36,0.15); }
-    .skill-card:nth-child(5):hover { border-color: var(--cyan); box-shadow: 0 8px 32px rgba(34,211,238,0.15); }
-
-    .skill-icon {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      display: block;
-    }
-
-    .skill-title {
+    .skill-tab {
+      background: none;
+      border: none;
+      border-bottom: 3px solid transparent;
+      padding: 0.85rem 1.4rem;
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-weight: 700;
-      font-size: 1rem;
-      margin-bottom: 1rem;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      white-space: nowrap;
+      margin-bottom: -1px;
+      transition: color 0.2s, border-color 0.2s;
     }
+    .skill-tab:hover { color: var(--text); }
+    .skill-tab.active[data-tab="strategy"]   { color: var(--coral);   border-bottom-color: var(--coral); }
+    .skill-tab.active[data-tab="analytics"]  { color: var(--violet);  border-bottom-color: var(--violet); }
+    .skill-tab.active[data-tab="collab"]     { color: var(--emerald); border-bottom-color: var(--emerald); }
+    .skill-tab.active[data-tab="growth"]     { color: var(--amber);   border-bottom-color: var(--amber); }
+    .skill-tab.active[data-tab="content"]    { color: var(--cyan);    border-bottom-color: var(--cyan); }
 
-    .skill-card:nth-child(1) .skill-title { color: var(--coral); }
-    .skill-card:nth-child(2) .skill-title { color: var(--violet); }
-    .skill-card:nth-child(3) .skill-title { color: var(--emerald); }
-    .skill-card:nth-child(4) .skill-title { color: var(--amber); }
-    .skill-card:nth-child(5) .skill-title { color: var(--cyan); }
+    .skill-panel {
+      display: none;
+      background: var(--card);
+      border-radius: 20px;
+      padding: 2.5rem;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .skill-panel.active { display: grid; grid-template-columns: 1fr 2fr; gap: 3rem; align-items: start; }
+
+    .skill-panel-left { }
+    .skill-panel-icon { font-size: 3rem; margin-bottom: 1rem; display: block; }
+    .skill-panel-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      line-height: 1.3;
+    }
+    #tab-strategy  .skill-panel-title { color: var(--coral); }
+    #tab-analytics .skill-panel-title { color: var(--violet); }
+    #tab-collab    .skill-panel-title { color: var(--emerald); }
+    #tab-growth    .skill-panel-title { color: var(--amber); }
+    #tab-content   .skill-panel-title { color: var(--cyan); }
+
+    .skill-panel-desc { font-size: 0.85rem; color: var(--muted); margin-top: 0.75rem; line-height: 1.6; }
 
     .skill-list {
       list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem 2rem;
     }
-
     .skill-list li {
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       color: var(--muted);
-      padding: 0.3rem 0;
-      border-bottom: 1px solid rgba(255,255,255,0.04);
+      padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.6rem;
     }
-
     .skill-list li::before {
-      content: '·';
-      color: var(--muted);
-      font-size: 1.2rem;
-      line-height: 0;
+      content: '→';
+      font-size: 0.75rem;
+      opacity: 0.5;
+      flex-shrink: 0;
     }
-
     .skill-list li:last-child { border-bottom: none; }
+
+    @media (max-width: 768px) {
+      .skill-panel.active { grid-template-columns: 1fr; gap: 1.5rem; }
+      .skill-list { grid-template-columns: 1fr; }
+      .skill-panel { padding: 1.75rem; }
+    }
 
     /* ── CASE STUDIES ── */
     #work {
@@ -760,6 +778,50 @@
     .fade-in-delay-3 { transition-delay: 0.3s; }
     .fade-in-delay-4 { transition-delay: 0.4s; }
 
+    /* ── IMAGES ── */
+    .about-photo-wrap {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      margin-bottom: 1.25rem;
+    }
+
+    .about-photo-wrap img {
+      width: 100%;
+      display: block;
+      border-radius: 24px;
+      object-fit: cover;
+      max-height: 460px;
+      object-position: center top;
+    }
+
+    .cs-image {
+      margin-top: 2.5rem;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.08);
+      position: relative;
+    }
+
+    .cs-image img {
+      width: 100%;
+      display: block;
+      border-radius: 16px;
+      transition: transform 0.4s ease;
+    }
+
+    .cs-image:hover img { transform: scale(1.015); }
+
+    .cs-image-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 1rem 1.25rem;
+      background: linear-gradient(to top, rgba(15,15,26,0.9), transparent);
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+    }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
       .cs-body { grid-template-columns: 1fr 1fr; }
@@ -783,6 +845,7 @@
 
       .cs-header { flex-direction: column; gap: 0.5rem; }
       .cs-number { font-size: 3rem; }
+      div[style*="grid-template-columns: 1fr 1fr"] { grid-template-columns: 1fr !important; }
     }
   </style>
 </head>
@@ -830,6 +893,9 @@
       </div>
 
       <div class="fade-in fade-in-delay-2">
+        <div class="about-photo-wrap">
+          <img src="images/about_photo.jpg" alt="Oanh Nguyen" loading="lazy" />
+        </div>
         <div class="stats-grid">
           <div class="stat-card">
             <div class="stat-number" style="color: var(--coral);">3+</div>
@@ -867,54 +933,78 @@
     <div class="section-label">Capabilities</div>
     <h2 class="section-title fade-in">What I do <em style="font-style:normal; background: linear-gradient(135deg, var(--amber), var(--coral)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;">well</em></h2>
 
-    <div class="skills-grid">
-      <div class="skill-card fade-in">
-        <span class="skill-icon">🎯</span>
-        <div class="skill-title">Strategy &amp; Planning</div>
-        <ul class="skill-list">
-          <li>Go-to-Market (GTM) Strategy</li>
-          <li>Quarterly / Annual Planning</li>
-          <li>OKRs &amp; KPI Definition</li>
-          <li>Positioning &amp; Messaging Frameworks</li>
-        </ul>
+    <div class="skills-tabs fade-in">
+      <div class="tab-nav">
+        <button class="skill-tab active" data-tab="strategy">🎯 Strategy &amp; Planning</button>
+        <button class="skill-tab" data-tab="analytics">📊 Analytics &amp; Optimization</button>
+        <button class="skill-tab" data-tab="collab">🤝 Collaboration &amp; Leadership</button>
+        <button class="skill-tab" data-tab="growth">🚀 Growth &amp; Channels</button>
+        <button class="skill-tab" data-tab="content">✍️ Content &amp; Communication</button>
       </div>
-      <div class="skill-card fade-in fade-in-delay-1">
-        <span class="skill-icon">📊</span>
-        <div class="skill-title">Analytics &amp; Optimization</div>
-        <ul class="skill-list">
-          <li>Funnel &amp; Conversion Analysis</li>
-          <li>A/B Testing</li>
-          <li>Marketing Performance Reporting</li>
-        </ul>
-      </div>
-      <div class="skill-card fade-in fade-in-delay-2">
-        <span class="skill-icon">🤝</span>
-        <div class="skill-title">Collaboration &amp; Leadership</div>
-        <ul class="skill-list">
-          <li>Cross-functional Collaboration</li>
-          <li>Stakeholder Management</li>
-          <li>Mentoring Juniors / Interns</li>
-        </ul>
-      </div>
-      <div class="skill-card fade-in fade-in-delay-3">
-        <span class="skill-icon">🚀</span>
-        <div class="skill-title">Growth &amp; Channels</div>
-        <ul class="skill-list">
-          <li>Organic Content (Blog, SEO, Social)</li>
-          <li>Paid Ads (Google, Meta, LinkedIn)</li>
-          <li>Community &amp; Partnership Campaigns</li>
-          <li>App &amp; Feature Launch Campaigns</li>
-        </ul>
-      </div>
-      <div class="skill-card fade-in fade-in-delay-4">
-        <span class="skill-icon">✍️</span>
-        <div class="skill-title">Content &amp; Communication</div>
-        <ul class="skill-list">
-          <li>Product Messaging &amp; Value Props</li>
-          <li>Website &amp; Landing Page Copy</li>
-          <li>Email Marketing &amp; Lifecycle</li>
-          <li>Internal Communication &amp; Enablement</li>
-        </ul>
+      <div class="tab-panels">
+        <div class="skill-panel active" id="tab-strategy">
+          <div class="skill-panel-left">
+            <span class="skill-panel-icon">🎯</span>
+            <div class="skill-panel-title">Strategy &amp; Planning</div>
+            <p class="skill-panel-desc">Defining where to play and how to win — from market positioning to quarterly execution.</p>
+          </div>
+          <ul class="skill-list">
+            <li>Go-to-Market (GTM) Strategy</li>
+            <li>Quarterly / Annual Planning</li>
+            <li>OKRs &amp; KPI Definition</li>
+            <li>Positioning &amp; Messaging Frameworks</li>
+          </ul>
+        </div>
+        <div class="skill-panel" id="tab-analytics">
+          <div class="skill-panel-left">
+            <span class="skill-panel-icon">📊</span>
+            <div class="skill-panel-title">Analytics &amp; Optimization</div>
+            <p class="skill-panel-desc">Turning data into decisions — tracking performance and continuously improving results.</p>
+          </div>
+          <ul class="skill-list">
+            <li>Funnel &amp; Conversion Analysis</li>
+            <li>A/B Testing</li>
+            <li>Marketing Performance Reporting</li>
+          </ul>
+        </div>
+        <div class="skill-panel" id="tab-collab">
+          <div class="skill-panel-left">
+            <span class="skill-panel-icon">🤝</span>
+            <div class="skill-panel-title">Collaboration &amp; Leadership</div>
+            <p class="skill-panel-desc">Bridging teams and growing talent — cross-functional alignment and people development.</p>
+          </div>
+          <ul class="skill-list">
+            <li>Cross-functional Collaboration</li>
+            <li>Stakeholder Management</li>
+            <li>Mentoring Juniors / Interns</li>
+          </ul>
+        </div>
+        <div class="skill-panel" id="tab-growth">
+          <div class="skill-panel-left">
+            <span class="skill-panel-icon">🚀</span>
+            <div class="skill-panel-title">Growth &amp; Channels</div>
+            <p class="skill-panel-desc">Driving acquisition and retention across organic, paid, and community channels.</p>
+          </div>
+          <ul class="skill-list">
+            <li>Organic Content (Blog, SEO, Social)</li>
+            <li>Paid Ads (Google, Meta, LinkedIn)</li>
+            <li>Community &amp; Partnership Campaigns</li>
+            <li>App &amp; Feature Launch Campaigns</li>
+          </ul>
+        </div>
+        <div class="skill-panel" id="tab-content">
+          <div class="skill-panel-left">
+            <span class="skill-panel-icon">✍️</span>
+            <div class="skill-panel-title">Content &amp; Communication</div>
+            <p class="skill-panel-desc">Crafting messages that resonate — from value props to lifecycle emails and internal docs.</p>
+          </div>
+          <ul class="skill-list">
+            <li>Product Messaging &amp; Value Props</li>
+            <li>Website &amp; Landing Page Copy</li>
+            <li>Email Marketing &amp; Lifecycle</li>
+            <li>Internal Communication &amp; Enablement</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
@@ -963,6 +1053,10 @@
             </ul>
           </div>
         </div>
+        <div class="cs-image fade-in">
+          <img src="images/products_glimpse.jpg" alt="Products overview — ITC Group, ezLoyalty, Plaan, iWorkspace" loading="lazy" />
+          <div class="cs-image-caption">Products marketed at ITC Group — consistent messaging rolled out across all four platforms</div>
+        </div>
       </div>
     </div>
 
@@ -1004,6 +1098,10 @@
               <li class="impact-item"><span class="impact-bullet"></span>Strong alignment across Product, Sales &amp; CS</li>
             </ul>
           </div>
+        </div>
+        <div class="cs-image fade-in">
+          <img src="images/gtm_project1.jpg" alt="UpDiagram booth at Vietnam Mobile Summit" loading="lazy" />
+          <div class="cs-image-caption">UpDiagram booth at Vietnam Mobile Summit — GTM executed end-to-end including event presence</div>
         </div>
       </div>
     </div>
@@ -1048,6 +1146,10 @@
             </ul>
           </div>
         </div>
+        <div class="cs-image fade-in">
+          <img src="images/ezloyalty_web.jpg" alt="ezLoyalty website — loyalty program pages" loading="lazy" />
+          <div class="cs-image-caption">ezLoyalty website built from scratch — 4 loyalty program verticals, designed &amp; launched within 6 months</div>
+        </div>
       </div>
     </div>
 
@@ -1089,6 +1191,10 @@
               <li class="impact-item"><span class="impact-bullet"></span>Improved retention for organizers &amp; players</li>
             </ul>
           </div>
+        </div>
+        <div class="cs-image fade-in">
+          <img src="images/givetour_app.jpg" alt="GiveTour mobile app launch campaign" loading="lazy" />
+          <div class="cs-image-caption">GiveTour mobile app — ASO assets, launch campaign creative, and onboarding flow</div>
         </div>
       </div>
     </div>
@@ -1151,6 +1257,16 @@
             <p>Build brand awareness and user loyalty through referral programs and reward systems</p>
           </div>
         </div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-top: 1.25rem;">
+          <div class="cs-image fade-in">
+            <img src="images/content_plan.jpg" alt="Inbound Content Plan 2024 — UpDiagram" loading="lazy" />
+            <div class="cs-image-caption">Inbound Content Plan 2024 — full content strategy and execution roadmap</div>
+          </div>
+          <div class="cs-image fade-in fade-in-delay-1">
+            <img src="images/thought_leadership.jpg" alt="Thought leadership articles published for ITC Group" loading="lazy" />
+            <div class="cs-image-caption">Thought leadership series — technical content for app security, data warehousing, and AI</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1176,6 +1292,16 @@
   </footer>
 
   <script>
+    // Skills tab switching
+    document.querySelectorAll('.skill-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.skill-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.skill-panel').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+      });
+    });
+
     // Intersection Observer for fade-in animations
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
