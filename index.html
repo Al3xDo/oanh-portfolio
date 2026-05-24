@@ -86,6 +86,45 @@
       overflow: hidden;
     }
 
+    /* ── ORBS ── */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.28;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .orb-coral   { background: var(--coral); }
+    .orb-violet  { background: var(--violet); }
+    .orb-emerald { background: var(--emerald); }
+    .orb-amber   { background: var(--amber); }
+    .orb-cyan    { background: var(--cyan); }
+
+    @keyframes orbDrift1 {
+      0%   { transform: translate(0px,   0px)  scale(1);    }
+      33%  { transform: translate(50px, -40px) scale(1.1);  }
+      66%  { transform: translate(-30px, 25px) scale(0.93); }
+      100% { transform: translate(0px,   0px)  scale(1);    }
+    }
+    @keyframes orbDrift2 {
+      0%   { transform: translate(0px,   0px)  scale(1);    }
+      40%  { transform: translate(-45px, 35px) scale(1.07); }
+      75%  { transform: translate(30px, -20px) scale(0.96); }
+      100% { transform: translate(0px,   0px)  scale(1);    }
+    }
+    @keyframes orbDrift3 {
+      0%   { transform: translate(0px, 0px)    scale(1);    }
+      50%  { transform: translate(35px, 45px)  scale(1.05); }
+      100% { transform: translate(0px, 0px)    scale(1);    }
+    }
+
+    #hero { overflow: hidden; }
+    #hero > *:not(.orb) { position: relative; z-index: 1; }
+
+    #contact { overflow: hidden; }
+    #contact > *:not(.orb) { position: relative; z-index: 1; }
+
     #hero::before {
       content: '';
       position: absolute;
@@ -529,7 +568,10 @@
       font-size: 0.9rem;
       color: var(--muted);
       line-height: 1.7;
+      transition: font-size 0.2s ease, color 0.2s ease;
     }
+
+    .cs-col p:hover { font-size: 0.96rem; color: var(--text); }
 
     .cs-col ul {
       list-style: none;
@@ -539,7 +581,10 @@
       padding: 0.3rem 0;
       display: flex;
       gap: 0.6rem;
+      cursor: default;
     }
+
+    .cs-col ul li:hover { font-size: 0.96rem; color: var(--text); }
 
     .cs-col ul li::before {
       content: '→';
@@ -559,6 +604,14 @@
       display: flex !important;
       align-items: center;
       gap: 0.6rem;
+      transition: font-size 0.2s ease, background 0.2s ease, transform 0.2s ease;
+      cursor: default;
+    }
+
+    .impact-item:hover {
+      font-size: 0.96rem;
+      background: rgba(255,255,255,0.08);
+      transform: translateX(4px);
     }
 
     .impact-item::before { display: none !important; }
@@ -864,6 +917,9 @@
 
   <!-- HERO -->
   <section id="hero">
+    <div class="orb orb-coral"   style="width:520px;height:520px;top:-120px;left:-140px;animation:orbDrift1 22s ease-in-out infinite;"></div>
+    <div class="orb orb-violet"  style="width:460px;height:460px;top:40px;right:-100px;animation:orbDrift2 28s ease-in-out infinite;animation-delay:-8s;"></div>
+    <div class="orb orb-emerald" style="width:340px;height:340px;bottom:-80px;left:30%;animation:orbDrift3 18s ease-in-out infinite;animation-delay:-4s;"></div>
     <div class="hero-tag">Marketing Portfolio</div>
     <h1 class="hero-name"><span>Oanh Nguyen</span></h1>
     <p class="hero-tagline">Results-driven marketer · 3+ years in tech &amp; SaaS</p>
@@ -1273,6 +1329,8 @@
 
   <!-- CONTACT -->
   <section id="contact">
+    <div class="orb orb-violet" style="width:480px;height:480px;top:-60px;left:-100px;animation:orbDrift2 25s ease-in-out infinite;opacity:0.22;"></div>
+    <div class="orb orb-cyan"   style="width:380px;height:380px;bottom:-80px;right:-60px;animation:orbDrift1 20s ease-in-out infinite;animation-delay:-10s;opacity:0.2;"></div>
     <div class="section-label">Get in Touch</div>
     <h2 class="contact-headline fade-in">Let's Work<br><span>Together</span></h2>
     <p class="contact-sub fade-in fade-in-delay-1">Open to new opportunities in marketing leadership, B2B SaaS, and growth roles.</p>
@@ -1290,7 +1348,7 @@
   </section>
 
   <footer>
-    <p>© 2024 Oanh Nguyen · Marketing Portfolio</p>
+    <p>© 2026 Oanh Nguyen · Marketing Portfolio</p>
   </footer>
 
   <script>
